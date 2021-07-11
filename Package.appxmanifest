@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5" 
+  xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4" 
+  xmlns:iot2="http://schemas.microsoft.com/appx/manifest/iot/windows10/2" 
+  IgnorableNamespaces="uap mp uap5 iot2 desktop4">
+
+  <Identity
+    Name="49452RobinParashar.BatteryLife"
+    Publisher="CN=DA77D6A3-6719-4BE4-B690-4193F233DE42"
+    Version="1.0.11.0" />
+
+  <mp:PhoneIdentity PhoneProductId="0e36393b-d108-4c8e-b6ec-57a44527d200" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>Battery Life++</DisplayName>
+    <PublisherDisplayName>Robin Parashar</PublisherDisplayName>
+    <Logo>Assets\icons8-battery-50-50.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application 
+      Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="BatteryChargedReminder.Program"
+      desktop4:SupportsMultipleInstances="true" 
+      desktop4:Subsystem="console" 
+      iot2:SupportsMultipleInstances="true" 
+      iot2:Subsystem="console">
+
+      <uap:VisualElements
+        DisplayName="Battery Life++"
+        Square150x150Logo="Assets\icons8-battery-150-150.png" 
+        Square44x44Logo="Assets\icons8-battery-44-44.png" 
+        Description="Reminder App to keep low SOC to increase battery life." BackgroundColor="transparent">
+        <uap:DefaultTile 
+          Wide310x150Logo="Assets\icons8-battery-310-150.png" 
+          Square310x310Logo="Assets\icons8-battery-310-310.png" 
+          Square71x71Logo="Assets\icons8-battery-71-71.png">
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\icons8-battery-620-300.png" />
+      </uap:VisualElements>
+
+      <Extensions>
+        <uap5:Extension 
+          Category="windows.appExecutionAlias" 
+	        Executable="BatteryChargedReminder.exe" 
+          EntryPoint="BatteryChargedReminder.Program">
+          <uap5:AppExecutionAlias desktop4:Subsystem="console" iot2:Subsystem="console">
+            <uap5:ExecutionAlias Alias="BatteryChargedReminder.exe" />
+          </uap5:AppExecutionAlias>
+        </uap5:Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackGroundTask.BackgroundTasks.BatteryNotifierTask">
+          <BackgroundTasks>
+            <Task Type="timer"/>
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
+
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
